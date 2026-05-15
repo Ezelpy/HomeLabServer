@@ -176,7 +176,7 @@ graph LR
 # Hosted Services
 
 ## Django Web Application
-Self-hosted Python/Django application behind NGINX with PostgreSQL backend.
+Self-hosted Python/Django application behind NGINX with PostgreSQL backend with a Cloudflare Tunnel.
 
 ---
 
@@ -186,5 +186,5 @@ Private network-attached storage for internal file sharing.
 ---
 
 ## Public Minecraft Server
-Internet-accessible Minecraft server securely exposed through **Playit.gg tunneling**.
+Internet-accessible Minecraft server securely exposed through Playit.gg tunneling.
 
