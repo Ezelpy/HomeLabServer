@@ -122,11 +122,13 @@ This design allowed me to host public-facing services while controlling exposure
 
 # Monitoring & Observability
 
+The homelab uses separate pipelines for metrics and log collection.
+
 ---
 
 ## Metrics Monitoring
 
-This  collects host and Docker metrics with Telegraf to then store them in InfluxDB so that we can visualize the data in Grafana.
+Host and container metrics are collected with Telegraf, stored in InfluxDB, and visualized in Grafana.
 
 ```mermaid
 graph LR
@@ -142,25 +144,16 @@ graph LR
 ### Dashboards
 
 **Infrastructure Monitoring**
-- host uptime
-- CPU / RAM / disk usage
-- system load
-- CPU temperature
-- network usage
+<img src="images/homelab panel.png" width="100%">
 
 **Container Monitoring**
-- running containers
-- container health status
-- restart counts
-- per-container CPU / memory / disk usage
-- network traffic
-- uptime tracking
+<img src="images/docker container panel.png" width="100%">
 
 ---
 
 ## Log Collection & Security Monitoring
 
-It collects system, application, container, and security logs with Promtail, which are stored in Loki and visualized in Grafana.
+System, application, container, and security logs are collected with Promtail, stored in Loki, and analyzed in Grafana.
 
 ```mermaid
 graph LR
@@ -175,29 +168,15 @@ graph LR
     L --> G[Security Operations Center Dashboard]
 ```
 
-Logs are queried in Grafana using **LogQL**.
-
 ### Dashboards
 
 **Security Operations Center**
-- firewall activity
-- Fail2Ban events
-- Suricata IDS alerts
-- container/application errors
-- PostgreSQL events
-- NGINX access / threat activity
-- unified security event stream
+<img src="images/soc panel.png" width="100%">
 
 # Hosted Services
 
 ## Django Web Application
 Self-hosted Python/Django application behind NGINX with PostgreSQL backend.
-
-Features:
-- authentication
-- persistent database storage
-- reverse proxy deployment
-- containerized service architecture
 
 ---
 
@@ -209,9 +188,3 @@ Private network-attached storage for internal file sharing.
 ## Public Minecraft Server
 Internet-accessible Minecraft server securely exposed through **Playit.gg tunneling**.
 
-Used to simulate:
-- public service exposure
-- external client traffic
-- network hardening
-- uptime/observability monitoring
-- real-world internet-facing workload management
